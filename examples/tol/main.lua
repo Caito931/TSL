@@ -1,5 +1,6 @@
 -- import 
 TOL = require("TOL")
+print(package.path)
 
 local Name = "Caio"
 
@@ -15,9 +16,9 @@ TOL.printf("%s", 0.32 .. '\n')
 
 TOL.colorPrint(TOL.color.green, Name)
 
-TOL.tofile("tol/test.txt", Name)
+TOL.tofile("examples/tol/test.txt", Name)
 
-local f = io.open("tol/test.txt", "r")
+local f = io.open("examples/tol/test.txt", "r")
 if f then
     TOL.println(f:read("a"))
     f:close()
