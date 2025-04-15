@@ -1,5 +1,5 @@
 -- import
-require("TGL")
+TGL = require("TGL")
 
 function love.load()
     local Name

@@ -1,5 +1,5 @@
 -- import
-require("TML")
+TML = require("TML")
 
 -- Examples
 local myArray = {1.50, 1.54, 1.55, 1.60, 1.65, 1.67, 1.69, 1.75, 1.78}

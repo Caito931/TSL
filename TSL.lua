@@ -1,3 +1,0 @@
---== Torplem Standart Library ==--
--- -> Made By: Choraumm
--- -> Created in: 05/04/2025

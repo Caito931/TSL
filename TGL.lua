@@ -3,7 +3,7 @@
 -- -> Created in: 05/04/2025
 
 -- Torplem GUI library (Torplem Graphics Library)
-TGL = {}
+local TGL = {}
 
 -- Include
 local utf8 = require("utf8")
@@ -550,3 +550,5 @@ function TGL.toolTip.draw(tT)
 end
 
 -------------------------------------------------------------------------------------------
+
+return TGL

@@ -3,7 +3,7 @@
 -- -> Created in: 15/04/2025
 
 -- Torplem Output Library (TOL)
-TOL = {}
+local TOL = {}
 
 -- Colors
 TOL.color = {
@@ -54,3 +54,5 @@ TOL.tofile = function(path, ...)
         TOL.eprintln("Could Not Open File!")
     end
 end
+
+return TOL

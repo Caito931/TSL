@@ -3,7 +3,7 @@
 -- -> Created in: 14/04/2025
 
 -- Torplem Math Library (TML)
-TML = {}
+local TML = {}
 
 ---- Abs ----
 -- Absolute value of a number
@@ -400,3 +400,5 @@ TML.mode = function(arr)
     end
     return greatestK
 end
+
+return TML
