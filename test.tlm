@@ -1,0 +1,56 @@
+import TSL.TML -- Example of a library of TSL "math one"
+import TSL.TOL -- Another Example of a library of TSL "output one"
+
+fn sayHello (name)
+    return "Hello " .. name
+end
+
+local name = "Caio"
+
+TOS.println (sayHello(name))
+
+local numbers = {1, 2, 2, 3}
+
+local mean = TML.mean(numbers)
+
+local median = TML.median(numbers)
+
+local sum = TML.sum(numbers)
+
+if (1 == 1) then
+    TOS.println("Math is still alive!")
+elseif (1 == "1") then
+    TOS.println("Is this JS?")
+else
+    TOS.println("I am confused!")
+end
+
+for number in numbers do
+    TOS.println(number)
+end
+
+switch (numbers) do
+    case: 1 do
+        TOS.println(1)
+        break
+    end
+    case: 2 do
+        TOS.println(1)
+        break
+    end
+    case: 3 do
+        TOS.println(3)
+        break
+    end
+
+    default: do
+        TOS.println("this is a default for errors")
+    end
+end
+
+local final = TML.new(numbers, mean, sum)
+
+while (true) do
+    TOS.println("Infinite Loop!")
+end
+

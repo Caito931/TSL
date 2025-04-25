@@ -14,13 +14,9 @@ function love.load()
         TGL.color.LIGHTBLUE,
         TGL.color.LIGHTBLUE
     )
-    TGL.button.setDefaultStatus(myButton)
-
     myButton.onClick = function()
         -- DEFAULT
-        myButton.color = myButton.Ccolor
-        myButton.scale = 0.9
-        myButton.clickCooldown = 0.15
+        TGL.button.SDclick(myButton)
 
         -- Get Sex
         if     myRadioButton.active  then Sex = myMaleLabel.text
@@ -33,13 +29,6 @@ function love.load()
         -- Get Password
         Password = myInputbox2.text
 
-        -- Print
-        --[[
-        print("Name: " .. Name)
-        print("Password: " .. Password)
-        print("Sex: " .. Sex)
-        ]]
-
         -- Check Verification
         if Name == "Caio" and Password == "123" and Sex == "Male" then
             print("Sucefully Logged in!")
@@ -51,8 +40,16 @@ function love.load()
 
     end
     myButton.onHover = function()
-        myButton.color = myButton.Hcolor
-        myButton.scale = 1.1
+        -- DEFAULT
+        TGL.button.SDonHover(myButton)
+    end
+    myButton.nonHover = function()
+        -- DEFAULT
+        TGL.button.SDnonHover(myButton)
+    end
+    myButton.onRelease = function()
+        -- DEFAULT
+        TGL.button.SDonRelease(myButton)
     end
 
     myInputbox = TGL.textInput.new(

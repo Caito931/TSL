@@ -11,28 +11,30 @@ local utf8 = require("utf8")
 -- Colors
 TGL.color = {}
 local function initColors()
-    TGL.color.WHITE     = {255/255, 255/255, 255/255}
-    TGL.color.BLACK     = {0/255,   0/255,   0/255}
-    TGL.color.RED       = {255/255, 0/255,   0/255}
-    TGL.color.GREEN     = {0/255,   255/255, 0/255}
-    TGL.color.BLUE      = {0/255,   0/255,   255/255}
-    TGL.color.YELLOW    = {255/255, 255/255, 0/255}
-    TGL.color.CYAN      = {0/255,   255/255, 255/255}
-    TGL.color.MAGENTA   = {255/255, 0/255,   255/255}
-    TGL.color.GRAY      = {128/255, 128/255, 128/255}
-    TGL.color.LIGHTGRAY = {211/255, 211/255, 211/255}
-    TGL.color.DARKGRAY  = {64/255,  64/255,  64/255}
-    TGL.color.ORANGE    = {255/255, 165/255, 0/255}
-    TGL.color.PURPLE    = {128/255, 0/255,   128/255}
-    TGL.color.BROWN     = {139/255, 69/255,  19/255}
-    TGL.color.LIGHTBLUE = {44/255, 122/255, 200/255}
-    TGL.color.PINK      = {255/255, 192/255, 203/255}
-    TGL.color.LIME      = {0/255,   255/255, 0/255}
-    TGL.color.TURQUOISE = {64/255,  224/255, 208/255}
-    TGL.color.AQUA      = {0/255,   255/255, 255/255}
-    TGL.color.SALMON    = {250/255, 128/255, 114/255}
-    TGL.color.GOLD      = {255/255, 215/255, 0/255}
-    TGL.color.CRIMSON   = {220/255, 20/255, 60/255}
+    TGL.color.WHITE      = {255/255, 255/255, 255/255}
+    TGL.color.BLACK      = {0/255,   0/255,   0/255}
+    TGL.color.RED        = {255/255, 0/255,   0/255}
+    TGL.color.GREEN      = {0/255,   255/255, 0/255}
+    TGL.color.BLUE       = {0/255,   0/255,   255/255}
+    TGL.color.YELLOW     = {255/255, 255/255, 0/255}
+    TGL.color.DARKYELLOW = {200/255, 200/255, 0/255}
+    TGL.color.CYAN       = {0/255,   255/255, 255/255}
+    TGL.color.MAGENTA    = {255/255, 0/255,   255/255}
+    TGL.color.GRAY       = {128/255, 128/255, 128/255}
+    TGL.color.LIGHTGRAY  = {211/255, 211/255, 211/255}
+    TGL.color.DARKGRAY   = {64/255,  64/255,  64/255}
+    TGL.color.ORANGE     = {255/255, 165/255, 0/255}
+    TGL.color.PURPLE     = {128/255, 0/255,   128/255}
+    TGL.color.BROWN      = {139/255, 69/255,  19/255}
+    TGL.color.LIGHTBLUE  = {44/255, 122/255, 200/255}
+    TGL.color.PINK       = {255/255, 192/255, 203/255}
+    TGL.color.LIME       = {0/255,   255/255, 0/255}
+    TGL.color.TURQUOISE  = {64/255,  224/255, 208/255}
+    TGL.color.AQUA       = {0/255,   255/255, 255/255}
+    TGL.color.SALMON     = {250/255, 128/255, 114/255}
+    TGL.color.GOLD       = {255/255, 215/255, 0/255}
+    TGL.color.CRIMSON    = {220/255, 20/255, 60/255}
+    TGL.color.TWHITE     = {255/255, 255/255, 240/255}
 end
 initColors()
 
@@ -78,6 +80,16 @@ end
 
 TGL.button = {} 
 
+--[[
+    Creates a new Button object.
+
+    -- Example usage:
+    local myBtn = TGL.button.new(
+        100, 100, 200, 50, "Click Me", 
+        TGL.color.BLACK, 16, nil, 0.5,
+        TGL.color.BLUE, TGL.color.CYAN, TGL.color.LIGHTBLUE
+    )
+]]
 function TGL.button.new(x, y, width, height, text, textcolor, fontsize, bound, clickCooldown, color, Hcolor, Ccolor, onClick, onRelease, onHover, image)
     local button = {
         x = x or 0,
@@ -103,6 +115,12 @@ function TGL.button.new(x, y, width, height, text, textcolor, fontsize, bound, c
     return button
 end
 
+--[[
+    Update the Button Object.
+
+    -- Example usage:
+    TGL.button.update(myBtn, mx, my, dt)
+]]
 function TGL.button.update(btn, mx, my, dt)
     btn.hovered = checkHover(btn, mx, my)
     if btn.clickCooldown > 0 then
@@ -116,6 +134,12 @@ function TGL.button.update(btn, mx, my, dt)
     end
 end
 
+--[[
+    Draw the Button Object.
+
+    -- Example usage:
+    TGL.button.draw(myBtn)
+]]
 function TGL.button.draw(btn)
     -- Calculate scaled button dimensions
     local ButtonW = btn.width * btn.scale
@@ -154,11 +178,14 @@ end
 
 function TGL.button.setDefaultStatus(button)
     button.onClick = function()
+        button.clicked = true
         button.color = button.Ccolor
         button.scale = 0.9 -- default value
     end
     button.onHover = function()
-        button.color = button.Hcolor
+        if not button.clicked then
+            button.color = button.Hcolor
+        end
     end
     button.nonHover = function()
         if button.clickCooldown ~= 0 then
@@ -167,8 +194,77 @@ function TGL.button.setDefaultStatus(button)
         end
     end
     button.onRelease = function()
+        button.clicked = false
         button.scale = 1 -- default value
     end
+end
+
+--[[ 
+    Set the Default Click Status of A Button.
+
+    @param button TGL.button
+
+    -- Example:
+    myBtn.onClick = function(myBtn)
+        TGL.button.SDclick()
+        -- rest of the code...
+    end
+]]
+function TGL.button.SDclick(button)
+    button.clicked = true
+    button.color = button.Ccolor
+    button.scale = 0.9 
+end
+
+--[[ 
+    Set the Default on Hover Status of A Button.
+
+    @param button TGL.button
+
+    -- Example:
+    myBtn.SDonHover = function(myBtn)
+        TGL.button.SDonHover()
+        -- rest of the code...
+    end
+]]
+function TGL.button.SDonHover(button)
+    if not button.clicked then
+        button.color = button.Hcolor
+    end
+end
+
+--[[ 
+    Set the Default non Hovevr Status of A Button.
+
+    @param button TGL.button
+
+    -- Example:
+    myBtn.SDnonHover = function(myBtn)
+        TGL.button.SDnonHover()
+        -- rest of the code...
+    end
+]]
+function TGL.button.SDnonHover(button)
+    if button.clickCooldown ~= 0 then
+        button.color = button.Dcolor
+        button.scale = 1
+    end
+end
+
+--[[ 
+    Set the Default on Release Status of A Button.
+
+    @param button TGL.button
+
+    -- Example:
+    myBtn.SDonRelease = function(myBtn)
+        TGL.button.SDonRelease()
+        -- rest of the code...
+    end
+]]
+function TGL.button.SDonRelease(button)
+    button.clicked = false
+    button.scale = 1 
 end
 
 -------------------------------------------------------------------------------------------
@@ -346,6 +442,7 @@ function TGL.label.new(x, y, text, textcolor, fontsize)
         text = text,
         textcolor = textcolor,
         fontsize = fontsize,
+        font = love.graphics.setNewFont(fontsize) or nil,
     }
     return label
 end
@@ -354,7 +451,7 @@ function TGL.label.update(l, dt)
 end
 
 function TGL.label.draw(l)
-    love.graphics.setNewFont(l.fontsize)
+    love.graphics.setFont(l.font)
     love.graphics.setColor(l.textcolor)
     love.graphics.print(l.text, l.x, l.y)
 

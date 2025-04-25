@@ -113,6 +113,18 @@ TML.map = function(x, in_min, in_max, out_min, out_max)
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 end
 
+---- Max ----
+---- Returns the argument with the maximum value, according to the Lua operator <
+TML.max = function(x, ...)
+    return math.max(x, ...)
+end
+
+---- Min ----
+----- Returns the argument with the minimum value, according to the Lua operator <
+TML.min = function(x, ...)
+    return math.min(x, ...)
+end
+
 ---- Modf ----
 -- Return the integer and fractional parts of x
 TML.modf = function(x)
