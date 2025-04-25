@@ -1,0 +1,25 @@
+License Agreement
+
+Copyright (c) [2025], [Choraumm]
+
+License: Attribution-Only License
+
+1. Grant of License:
+   You are hereby granted a non-exclusive, non-transferable, royalty-free license to use, modify, and distribute this software library in your projects, under the conditions outlined in this license.
+
+2. Attribution Requirement:
+   If you use this library (in whole or in part), you must provide proper credit to the original author(s) in accordance with the following guidelines:
+   - In your project's documentation, clearly mention that this library is used and give credit to the author(s) with the following text:
+     > "This project uses [TSL] by [Choraumm]."
+   - If the project is a website or application, you must include a link to the original repository or the source of the library in a visible place, such as the footer or an "About" section.
+
+3. Modifications:
+   If you modify the library, you must also credit the original author and clearly indicate that you have made changes to the original library.
+
+4. No Warranty:
+   This library is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability or fitness for a particular purpose.
+
+5. Termination:
+   This license will automatically terminate if you breach any of the conditions outlined in this license. Upon termination, you must cease all use, modification, and distribution of the library.
+
+End of License Agreement
